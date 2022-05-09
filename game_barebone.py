@@ -135,15 +135,15 @@ class Champion:
             # can extend trades by dodging crutial enemy abilities
             "samurai": { 
                 "base-stats": (20, 10, 2, 7), # (hp, damage, resistance, speed)
-                "passive": 'After ability usage, strike twice (second hit deals 0.25 damage)',
+                "passive": 'Every third attack makes the target BLEED',
                 "abilities": {
                     'primary': {
                         'description': 'if an enemy attempts to strike you, parry their attack and hit them for [1.0 THEIR Damage]',
-                        'cooldown': 3,
+                        'cooldown': 5,
                         },
                     'secondary': {
-                        'description': 'Next 3 round you get [0.20 CRIT CHANCE] and your attacks cause enemies to BLEED',
-                        'cooldown': 5,
+                        'description': 'hit the enemy twice for [1.25 Damage] per hit, you drop 1 Speed',
+                        'cooldown': 4,
                         }, 
                 },
             },
@@ -151,33 +151,35 @@ class Champion:
             # high damage and resistances, regular hp
             # strikes slow but hard, gets very tanky with his abilities
             "knight": { 
-                "base-stats": (30, 6, 8, 5), # (hp, damage, resistance, speed)
+                "base-stats": (30, 6, 3, 3), # (hp, damage, resistance, speed)
                 "passive": 'reduce incoming damage by 0.10',
                 "abilities": {
                     'primary': {
-                        'description': 'Strikes with your shield, dealing [0.5 Damage] and stunning the target',
-                        'cooldown': 3,
+                        'description': 'Strikes with your shield, dealing [1 Damage] and stunning the target',
+                        'cooldown': 5,
                         },
                     'secondary': {
                         'description': 'Reduce damage taken by [0.25 Damage] and your Damage by [0.50 Damage] next 2 ROUNDS',
-                        'cooldown': 2,
+                        'cooldown': 3,
                         }, 
                 },
             },
             
             # very low base stats, assassin playstyle, hits hard fast to burst down his foes
             # his abilities allow him to inflict heavy damage and to hide
+            # low speed is benificial to let teammates hit target first
+            # low base damage so players itemize heavily in damage instead of tankiness
             "ninja": { 
-                "base-stats": (10, 3, 8, 10), # (hp, damage, resistance, speed)
-                "passive": 'Killing a target makes you INVISIBLE for the next 2 ROUNDS, your first strike after being HIDDEN deals [2.5 Damage]',
+                "base-stats": (15, 2, 5, 1), # (hp, damage, resistance, speed)
+                "passive": 'Killing a target makes you INVISIBLE for the next 2 ROUNDS, striking while HIDDEN deals [2.5 Damage] and reveals you',
                 "abilities": {
                     'primary': {
-                        'description': 'Stab an enemy for [2.0 Damage] and cause them to BLEED',
-                        'cooldown': 5,
+                        'description': 'After 3 turns, Stab an enemy for [2.0 Damage] and cause them to BLEED',
+                        'cooldown': 3, # cooldown starts on cast
                         },
                     'secondary': {
-                        'description': 'become INVISIBLE, your next attack gets an additional bonus [0.25 Damage]',
-                        'cooldown': 8,
+                        'description': 'After 2 turns, become INVISIBLE',
+                        'cooldown': 6,
                         }, 
                 },
             },
@@ -186,15 +188,15 @@ class Champion:
             # or in extreme cases to drop damage for sustain
             "werewolf": { 
                 "base-stats": (25, 10, 0, 2), # (hp, damage, resistance, speed)
-                "passive": 'Every attack restores [3 HP], getting below [10 HP] makes you ENRAGED and stronger [+5 Damage]',
+                "passive": 'Every attack restores [0.25 damage] HP, getting below [0.25 HP] makes you ENRAGED and stronger [+0.5 Damage]',
                 "abilities": {
                     'primary': {
-                        'description': 'Bite an enemy for [1.3 Damage] and heal for half that amount',
+                        'description': 'Bite an enemy for [0.5 Damage] and heal for that amount',
                         'cooldown': 3,
                         },
                     'secondary': {
-                        'description': 'STUN yourself for 2 rounds, heal [10 HP]',
-                        'cooldown': 5,
+                        'description': 'Trade 1 HP for 1 Damage',
+                        'cooldown': 1,
                         }, 
                 },
             },
@@ -202,15 +204,15 @@ class Champion:
             # moderate stats, provides a lot of utility and tankiness but no damage, staying alive last as gaoler is a sure loss
             # but through his powerful secondary he can make enemies focus him first  
             "gaoler": { 
-                "base-stats": (20, 3, 5, 4), # (hp, damage, resistance, speed)
-                "passive": 'reduce your target\'s resistance by 2 every time you attack',
+                "base-stats": (20, 3, 5, 8), # (hp, damage, resistance, speed)
+                "passive": 'reduce your target\'s resistance by 1 every time you attack',
                 "abilities": {
                     'primary': {
-                        'description': 'reduce ALL enemies speed by [3] and hit them for [0.5 Damage]',
+                        'description': 'reduce ALL enemies Speed by [3] and hit them for [1 Damage]',
                         'cooldown': 4,
                         },
                     'secondary': {
-                        'description': "targets you've hit three times in a row can be CAGED, rendering them and gaoler unable to act, this effect ends if gaoler is dead or take action",
+                        'description': "targets you've hit three times in a row can be CAGED, rendering them and GAOLER unable to act. This effect ends after [3] turns or if gaoler takes action",
                         'cooldown': 2,
                         }, 
                 },
@@ -219,12 +221,12 @@ class Champion:
             # Scarecrow's secondary is very powerful, the copy can survive and cast on it's own, if the first Scarecrow dies, the second
             # can still live, attack, and create other clones, there are no limits for clones but the very high cooldown
             "scarecrow": { 
-                "base-stats": (10, 8, 0, 10), # (hp, damage, resistance, speed)
+                "base-stats": (10, 5, 0, 10), # (hp, damage, resistance, speed)
                 "passive": 'Not acting for 2 ROUNDS makes you INVISIBLE',
                 "abilities": {
                     'primary': {
-                        'description': 'Slash for [1.5 Damage] and cause your target to BLEED',
-                        'cooldown': 2, 
+                        'description': 'Slash for [2 Damage] and cause your target to BLEED',
+                        'cooldown': 3, 
                         },
                     'secondary': {
                         'description': 'summon an exact copy of me',
@@ -236,16 +238,16 @@ class Champion:
             # Healer can act both as a damage dealer and as a support healer (duh), her healing is bound to damage she deals though, and past
             # 10 SOULS she would either get a fat heal off, or let a teammate down for the huge damage boost
             "healer": { 
-                "base-stats": (10, 6, 5, 5), # (hp, damage, resistance, speed)
-                "passive": 'HP that enemies lose from your attacks is stored as SOULS, each soul adds [+1 Damage]',
+                "base-stats": (10, 1, 2, 5), # (hp, damage, resistance, speed)
+                "passive": 'HP that enemies lose from your attacks is stored as SOULS, each soul adds [+1 Damage] and [+0.25 HP]',
                 "abilities": {
                     'primary': {
-                        'description': 'Deal [1.5 Damage] to a target, if you kill them gain their HP as souls',
-                        'cooldown': 4, 
+                        'description': 'Deal [0.5 Damage] to a target, if you kill them gain their HP as souls',
+                        'cooldown': 5, 
                         },
                     'secondary': {
-                        'description': 'Depleate all your souls to heal an ally 1 HP for every 1 SOUL and remove ENRAGED and STUNNED debuffs',
-                        'cooldown': 2,
+                        'description': 'Depleate all your souls to heal an ally 1 HP for every 1 SOUL, if more than [10] souls were used CLEANSE ENRAGED and STUNNED from target',
+                        'cooldown': 1,
                         }, 
                 },
             }, 
