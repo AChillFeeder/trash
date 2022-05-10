@@ -152,7 +152,7 @@ class Champion:
             # strikes slow but hard, gets very tanky with his abilities
             "knight": { 
                 "base-stats": (30, 6, 3, 3), # (hp, damage, resistance, speed)
-                "passive": 'reduce incoming damage by 0.10',
+                "passive": 'reduce incoming damage by [0.10 Damage Received]',
                 "abilities": {
                     'primary': {
                         'description': 'Strikes with your shield, dealing [1 Damage] and stunning the target',
@@ -174,11 +174,11 @@ class Champion:
                 "passive": 'Killing a target makes you INVISIBLE for the next 2 ROUNDS, striking while HIDDEN deals [2.5 Damage] and reveals you',
                 "abilities": {
                     'primary': {
-                        'description': 'After 3 turns, Stab an enemy for [2.0 Damage] and cause them to BLEED',
+                        'description': 'After [3] turns, Stab an enemy for [2.0 Damage] and cause them to BLEED',
                         'cooldown': 3, # cooldown starts on cast
                         },
                     'secondary': {
-                        'description': 'After 2 turns, become INVISIBLE',
+                        'description': 'After [2] turns, become INVISIBLE',
                         'cooldown': 6,
                         }, 
                 },
@@ -188,7 +188,7 @@ class Champion:
             # or in extreme cases to drop damage for sustain
             "werewolf": { 
                 "base-stats": (25, 10, 0, 2), # (hp, damage, resistance, speed)
-                "passive": 'Every attack restores [0.25 damage] HP, getting below [0.25 HP] makes you ENRAGED and stronger [+0.5 Damage]',
+                "passive": 'Every attack restores [0.25 damage] HP, getting below [0.25 MAX HP] makes you ENRAGED and stronger [+0.5 Damage]',
                 "abilities": {
                     'primary': {
                         'description': 'Bite an enemy for [0.5 Damage] and heal for that amount',
@@ -239,10 +239,10 @@ class Champion:
             # 10 SOULS she would either get a fat heal off, or let a teammate down for the huge damage boost
             "healer": { 
                 "base-stats": (10, 1, 2, 5), # (hp, damage, resistance, speed)
-                "passive": 'HP that enemies lose from your attacks is stored as SOULS, each soul adds [+1 Damage] and [+0.25 HP]',
+                "passive": 'HP that enemies lose from your attacks is stored as SOULS, each soul adds [+1 Damage] and restore [0.5] HP',
                 "abilities": {
                     'primary': {
-                        'description': 'Deal [0.5 Damage] to a target, if you kill them gain their HP as souls',
+                        'description': 'Deal [0.2 Damage] to a target, if you kill them gain [1.0 Enemy Max HP] as souls',
                         'cooldown': 5, 
                         },
                     'secondary': {
@@ -256,30 +256,31 @@ class Champion:
             # gets tankier the longer the game goes, and is very hard to take down because of his passive
             # war-thirster is underwhelming if not used aggressively
             "war-thirster": { 
-                "base-stats": (20, 2, 4, 2), # (hp, damage, resistance, speed)
+                "base-stats": (30, 2, 4, 2), # (hp, damage, resistance, speed)
                 "passive": 'when you die, you have a window of 3 ROUNDS to kill an enemy and get [0.5 Max HP] back',
                 "abilities": {
                     'primary': {
-                        'description': 'Cleave an enemy for [1.0 Damage + 0.5 Missing HP]',
-                        'cooldown': 6, 
+                        'description': 'Lose [0.1 HP] And Cleave an enemy for [0.5 Damage + 0.5 Missing HP]',
+                        'cooldown': 2, 
                         },
                     'secondary': {
-                        'description': 'ENRAGE, and gain [1.0 of Missing HP] as Damage',
-                        'cooldown': 8,
+                        'description': 'ENRAGED for [2] turns, and gain [1.0 of Missing HP] as Damage [for the duration]', # could be permanent increase
+                        'cooldown': 4,
                         }, 
                 },
             },
             
-            "berserk": { 
-                "base-stats": (25, 8, 5, 7), # (hp, damage, resistance, speed)
-                "passive": 'Your Damage is increased by [0.50 Max HP], your attacks heal for [0.50 Damage + 0.30 Missing HP]',
+            # Low damage and Big HP pool. All about risk taking and playing on the edge to get devastating damage
+            "sadist": { 
+                "base-stats": (25, 5, 5, 7), # (hp, damage, resistance, speed)
+                "passive": 'Receiving damage grants [+1 Damage] (Max +4 Damage/turn), [-1 Damage]/turn',
                 "abilities": {
                     'primary': {
-                        'description': 'hit an enemy and yourself for [0.80 Damage]',
+                        'description': 'Hit an enemy for [2.5 Damage] and take [0.25] of that damage',
                         'cooldown': 3, 
                         },
                     'secondary': {
-                        'description': 'Stab yourself for [0.50 Damage], not stabbing yourself for 5 rounds makes you ENRAGED',
+                        'description': 'hit yourself [3] times, heal [1.0 Max HP] after [1] turn',
                         'cooldown': 0,
                         }, 
                 },
